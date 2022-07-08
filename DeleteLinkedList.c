@@ -39,6 +39,19 @@ struct node* prev_del(struct node* prev_node){
     return temp; 
 }
 
+struct node* deletelast(){
+    struct node* last = head;
+    struct node* temp = NULL;
+    while(last->next != NULL){
+        temp = last;
+        last = last->next;
+    }
+    last = temp;
+    temp = temp->next;
+    last->next = NULL; 
+    return temp;
+}
+
 int main(){
     Insert(1);
     Insert(2);
@@ -46,6 +59,7 @@ int main(){
     print();
     //struct node* temp = deletefirst();
     //struct node* temp = prev_del(head->next+2);
+    struct node* temp = deletelast();
     printf("%d \n",temp->data);
     print();
 }
