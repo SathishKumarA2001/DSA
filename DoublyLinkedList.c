@@ -86,11 +86,43 @@ struct node* deleteLast(){
     return ptr;
 }
 
+struct node* delete(int key){
+    struct node *current = head;
+    struct node *previous = NULL;
+    struct node *next = NULL;
+
+    if(head == NULL){
+        return NULL;
+    } 
+
+    while(current->data != key){
+        if(current->next == NULL){
+            return NULL;
+        }else{
+            previous = current;
+            current = current->next;
+        }
+    }
+
+    if(current == head){
+        head = head->next;
+    }else{
+        current->prev->next = current->next;
+    }
+    if(current == last){
+        last = last->prev;
+    }else{
+        current->next->prev = current->prev;
+    }
+    return current;
+    
+}
+
 int main(void){
     InsertFirst(10);
     InsertFirst(20);
     InsertFirst(30);
-    struct node* temp = deleteLast();
+    struct node* temp = delete(10);
     printf("%d\n",temp->data);
     print();
     // InsertLast(40);
