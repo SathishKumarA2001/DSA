@@ -61,5 +61,6 @@ int main(){
     //struct node* temp = prev_del(head->next+2);
     struct node* temp = deletelast();
     printf("%d \n",temp->data);
+    free(temp);
     print();
 }
