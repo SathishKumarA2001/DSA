@@ -118,12 +118,45 @@ struct node* delete(int key){
     
 }
 
+int InsertAfter(int key,int newData){
+    struct node *current = head;
+    
+    if(current == NULL){
+        return 0;
+    }
+
+    while(current->data != key){
+        if(current->next == NULL){
+            return 0;
+        }else{
+            current = current->next;
+        }
+    }
+
+    struct node* link = (struct node*)malloc(sizeof(struct node));
+    struct node* temp;
+    link->data = newData;
+    
+    if(current == last){
+        link->next = NULL;
+    }else{
+        link->next = current->next;
+        current->next->prev = link;
+    }
+    link->prev = current;
+    current->next = link;
+
+    return 1;
+}
+
 int main(void){
     InsertFirst(10);
     InsertFirst(20);
     InsertFirst(30);
-    struct node* temp = delete(10);
-    printf("%d\n",temp->data);
+    //struct node* temp = delete(10);
+    //printf("%d\n",temp->data);
+    print();
+    InsertAfter(20,60);
     print();
     // InsertLast(40);
     // InsertLast(50);
