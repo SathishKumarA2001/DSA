@@ -71,12 +71,12 @@ void Search(struct node *root,int key){
     }
 }
 
-int main(){
+int main(int argc,char *argv[]){
     TDS(10);
      TDS(20);
       TDS(5);
        TDS(3);
         TDS(50);
         //Traversal(root);
-        Search(root,1);
+        Search(root,atol(argv[1]));  //atol() convert const *char to integer
 }
