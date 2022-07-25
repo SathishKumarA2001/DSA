@@ -71,12 +71,48 @@ void Search(struct node *root,int key){
     }
 }
 
+void Insert(int key){
+    struct node *n = (struct node*)malloc(sizeof(struct node));
+    struct node *current = root;
+    struct node *parent;
+    n->key = key;
+    n->left = NULL;
+    n->right = NULL;
+
+    if (root == NULL){
+        root = n;
+    }else{
+        while(1){
+            parent = current;    
+            
+            if(current->key > key){
+                current = current->left;
+                if (current == NULL){
+                    parent->left = n;
+                    return;
+                }         
+            }else if(current->key <= key){
+                current = current->right;
+                if (current == NULL){
+                    parent->right = n;
+                    return;
+                }         
+            }
+        }
+    }
+}
+
 int main(int argc,char *argv[]){
     TDS(10);
      TDS(20);
       TDS(5);
        TDS(3);
         TDS(50);
-        //Traversal(root);
-        Search(root,atol(argv[1]));  //atol() convert const *char to integer
+    //Traversal(root);
+    //Search(root,atol(argv[1]));  //atol() convert const *char to integer
+    Insert(60);
+    Insert(7);
+    Insert(45);
+    Insert(12);
+    Traversal(root);
 }
