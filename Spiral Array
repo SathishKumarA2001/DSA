@@ -1,3 +1,20 @@
+<?php
+$A = [
+        // [ 'a', 'b', 'c', 'd','e' ],
+        // [ 'f', 'g', 'h', 'i', 'j'],
+        // [ 'm', 'n', 'o', 'p','q' ],
+        // [ 'r', 's', 't', 'u', 'v'],
+        // [ 'w', 'x', 'y', 'z', '1']
+        [ 1, 2, 3, 4 ],
+        [ 5, 6, 7, 8 ],
+        [ 9, 10, 11, 12],
+        [13, 14, 15, 16]
+        // [ 1, 2, 3 ],
+        // [ 4, 5, 6 ],
+        // [ 7, 8, 9 ]
+        // [1]
+    ];
+    
 function spiralOrder($a) {
     $spiralArr = [];
     $visitedIndex = [];
@@ -44,7 +61,7 @@ function spiralOrder($a) {
                 // print_r($a[$curRowIndex][$col].",");
                  array_push($visitedIndex,"[".$curRowIndex.",".$col."]");
             }else {
-                $curColIndex = $col - 1;
+                $curColIndex = $col + 1;
                  break;
             }
         }
@@ -52,6 +69,7 @@ function spiralOrder($a) {
         
         if (count($visitedIndex) >= $aCount) break;
         
+        print("|".$curRowIndex." ".$curColIndex."|");
         for($row = $curRowIndex; $row >= 0; $row--) {
             $curRowIndex = $row;
             if(!in_array("[".$row.",".$curColIndex."]",$visitedIndex)) {
@@ -67,5 +85,13 @@ function spiralOrder($a) {
         
         if (count($visitedIndex) >= $aCount) break;
     }
+    
     return $spiralArr;
+    // Debug code below
+    // echo "\n";
+    // print_r($visitedIndex);
+
 }
+
+print_r(spiralOrder($A));
+?>
