@@ -1,0 +1,71 @@
+function spiralOrder($a) {
+    $spiralArr = [];
+    $visitedIndex = [];
+    $curRowIndex = 0;
+    $curColIndex = 0;
+    $aCount = count($a) * count($a);
+    
+    while(count($visitedIndex) <= $aCount) {
+        
+        for($col = $curColIndex;$col < count($a); $col++) {
+            $curColIndex = $col;
+            if(!in_array("[".$curRowIndex.",".$col."]",$visitedIndex)) {
+                array_push($spiralArr, $a[$curRowIndex][$col]);
+                // print_r($a[$curRowIndex][$col].",");
+                array_push($visitedIndex,"[".$curRowIndex.",".$col."]");
+            }else {
+                $curColIndex = $col - 1;
+                break;
+            }
+        }
+        $curRowIndex += 1;
+        
+        if (count($visitedIndex) >= $aCount) break;
+     
+        for($row = $curRowIndex;$row < count($a); $row++) {
+            $curRowIndex = $row;
+            if(!in_array("[".$row.",".$curColIndex."]",$visitedIndex)) {
+                array_push($spiralArr, $a[$row][$curColIndex]);
+                // print_r($a[$row][$curColIndex].",");
+                array_push($visitedIndex,"[".$row.",".$curColIndex."]");
+            }else {
+                $curRowIndex = $row - 1;
+                break;
+            }
+        }
+        $curColIndex -= 1;
+        
+        if (count($visitedIndex) >= $aCount) break;
+    
+        for($col = $curColIndex; $col >= 0; $col--) {
+            $curColIndex = $col;
+            if(!in_array("[".$curRowIndex.",".$col."]",$visitedIndex)) {
+                array_push($spiralArr, $a[$curRowIndex][$col]);
+                // print_r($a[$curRowIndex][$col].",");
+                 array_push($visitedIndex,"[".$curRowIndex.",".$col."]");
+            }else {
+                $curColIndex = $col - 1;
+                 break;
+            }
+        }
+        $curRowIndex -= 1; 
+        
+        if (count($visitedIndex) >= $aCount) break;
+        
+        for($row = $curRowIndex; $row >= 0; $row--) {
+            $curRowIndex = $row;
+            if(!in_array("[".$row.",".$curColIndex."]",$visitedIndex)) {
+                array_push($spiralArr, $a[$row][$curColIndex]);
+                // print_r($a[$row][$curColIndex].",");
+              array_push($visitedIndex,"[".$row.",".$curColIndex."]");
+            } else {
+                $curRowIndex = $row + 1;
+                 break;
+            }
+        }
+        $curColIndex += 1;
+        
+        if (count($visitedIndex) >= $aCount) break;
+    }
+    return $spiralArr;
+}
